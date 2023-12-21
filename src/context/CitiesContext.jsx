@@ -5,10 +5,11 @@ const CitiesContext = createContext();
 
 const BASE_URL = "http://localhost:8000";
 
+// eslint-disable-next-line react/prop-types
 function CitiesProvider({ children }) {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [currenctCity, setCurrenctCity] = useState({});
+  const [currentCity, setCurrentCity] = useState({});
 
   useEffect(function () {
     async function fetchCities() {
@@ -32,7 +33,7 @@ function CitiesProvider({ children }) {
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
       console.log(data);
-      setCurrenctCity(data);
+      setCurrentCity(data);
     } catch {
       alert("There was an error loading data...");
     } finally {
@@ -40,9 +41,7 @@ function CitiesProvider({ children }) {
     }
   }
   return (
-    <CitiesContext.Provider
-      value={{ cities, isLoading, currenctCity, getCity }}
-    >
+    <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity }}>
       {children}
     </CitiesContext.Provider>
   );
@@ -55,4 +54,5 @@ function useCities() {
   return context;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { CitiesProvider, useCities };
