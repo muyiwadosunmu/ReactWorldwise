@@ -12,20 +12,18 @@ import styles from "./Map.module.css";
 import { useCities } from "../context/CitiesContext";
 import { useGeolocation } from "../hooks/useGeoLocation";
 import Button from "./Button";
+import useUrlPosition from "../hooks/useUrlPosition";
 
 function Map() {
   // const navigate = useNavigate(); // Moved this below to the custom hook
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([40, 0]); // [lat,lng]
-  const [searchParams] = useSearchParams();
   const {
     isLoading: isLoadingPosition,
     position: geoLocationPosition,
     getPosition,
   } = useGeolocation();
-
-  const mapLat = searchParams.get("lat");
-  const mapLng = searchParams.get("lng");
+  const [mapLat, mapLng] = useUrlPosition();
 
   useEffect(
     function () {
