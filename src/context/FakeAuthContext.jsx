@@ -7,6 +7,7 @@ const AuthContext = createContext();
 const initialState = {
   user: null,
   isAuthenticated: false,
+  error: "",
 };
 
 function reducer(state, action) {
