@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/FakeAuthContext";
 
+// eslint-disable-next-line react/prop-types
 function ProtectedRoutes({ children }) {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
